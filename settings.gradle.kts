@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google {
@@ -19,5 +21,12 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Test Flickr"
+rootProject.name = "TestFlickr"
 include(":app")
+include(":data")
+include(":core")
+include(":core:ui")
+include(":core:utils")
+include(":features")
+include(":features:gallery_screen")
+include(":features:picture_detail_screen")
