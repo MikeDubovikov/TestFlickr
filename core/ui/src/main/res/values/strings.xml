@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Test Flickr</string>
+    <string name="search">Search</string>
+    <string name="picture">Picture</string>
+    <string name="image">Image of the picture</string>
+    <string name="error">Something went wrong</string>
+    <string name="back_icon">Back icon</string>
+    <string name="search_icon">Search icon</string>
+    <string name="clear_search_icon">Clear search icon</string>
+    <string name="make_search">Make your first search!</string>
 </resources>

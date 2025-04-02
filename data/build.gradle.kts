@@ -49,7 +49,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
     implementation(libs.okhttp)
-    implementation(libs.room.runtime)
+    implementation(libs.room.paging)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
     implementation(libs.paging)

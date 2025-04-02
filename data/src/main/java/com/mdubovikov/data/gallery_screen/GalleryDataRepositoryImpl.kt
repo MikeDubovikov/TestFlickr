@@ -1,41 +1,43 @@
 package com.mdubovikov.data.gallery_screen
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.mdubovikov.data.database.dao.FlickrDao
+import com.mdubovikov.data.database.FlickrDatabase
 import com.mdubovikov.data.database.entity.PictureDb
 import com.mdubovikov.data.network.api.FlickrApi
-import com.mdubovikov.data.network.dto.PictureDto
-import com.mdubovikov.data.paging.PicturePageSource
+import com.mdubovikov.data.paging.PictureRemoteMediator
 import com.mdubovikov.data.repositories.GalleryDataRepository
+import com.mdubovikov.gallery_screen.domain.entity.Picture
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GalleryDataRepositoryImpl @Inject constructor(
-    private val apiService: FlickrApi,
-    private val flickrDao: FlickrDao
+    private val flickrApi: FlickrApi,
+    private val flickrDatabase: FlickrDatabase,
+    private val pictureMapper: PictureMapper
 ) : GalleryDataRepository {
 
-    override fun searchPictures(query: String, quality: String): Flow<PagingData<PictureDto>> =
+    @OptIn(ExperimentalPagingApi::class)
+    override fun searchPictures(
+        query: String,
+        quality: String
+    ): Flow<PagingData<PictureDb>> =
         Pager(
             config = PagingConfig(
-                pageSize = 10,
-                enablePlaceholders = false,
-                initialLoadSize = 20
+                pageSize = 10
             ),
-            pagingSourceFactory = { PicturePageSource(apiService, query) }
+            remoteMediator = PictureRemoteMediator(
+                flickrApi,
+                flickrDatabase,
+                pictureMapper,
+                query,
+                quality
+            ),
+            pagingSourceFactory = { flickrDatabase.flickrDao().getPicturesPaging() }
         ).flow
 
-    override suspend fun getPictures(): List<PictureDb> {
-        return flickrDao.getPictures()
-    }
-
-    override suspend fun insertPictures(pictures: List<PictureDb>) {
-        return flickrDao.insertPictures(pictures = pictures)
-    }
-
-    override suspend fun clearPictures() {
-        return flickrDao.clearPictures()
-    }
+    override suspend fun getPictures(): List<Picture> =
+        flickrDatabase.flickrDao().getPicturesList().map(pictureMapper::toPictureDomain)
 }

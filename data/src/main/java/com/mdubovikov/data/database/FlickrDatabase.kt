@@ -7,18 +7,18 @@ import androidx.room.RoomDatabase
 import com.mdubovikov.data.database.dao.FlickrDao
 import com.mdubovikov.data.database.entity.PictureDb
 
-@Database(entities = [PictureDb::class], version = 1, exportSchema = false)
-abstract class PictureDatabase : RoomDatabase() {
+@Database(entities = [PictureDb::class], version = 1)
+abstract class FlickrDatabase : RoomDatabase() {
 
-    abstract fun getPictureDao(): FlickrDao
+    abstract fun flickrDao(): FlickrDao
 
     companion object {
 
-        private const val DB_NAME = "PictureDatabase"
-        private var INSTANCE: PictureDatabase? = null
+        private const val DB_NAME = "FlickrDatabase"
+        private var INSTANCE: FlickrDatabase? = null
         private val LOCK = Any()
 
-        fun getInstance(context: Context): PictureDatabase {
+        fun getInstance(context: Context): FlickrDatabase {
             INSTANCE?.let { return it }
 
             synchronized(LOCK) {
@@ -26,7 +26,7 @@ abstract class PictureDatabase : RoomDatabase() {
 
                 val database = Room.databaseBuilder(
                     context = context,
-                    klass = PictureDatabase::class.java,
+                    klass = FlickrDatabase::class.java,
                     name = DB_NAME
                 ).build()
 
