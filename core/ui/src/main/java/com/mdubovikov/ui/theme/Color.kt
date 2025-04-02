@@ -1,4 +1,4 @@
-package com.mdubovikov.ui
+package com.mdubovikov.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
