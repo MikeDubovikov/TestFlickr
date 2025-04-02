@@ -1,7 +1,7 @@
 package com.mdubovikov.data.gallery_screen.di
 
 import android.app.Application
-import com.mdubovikov.data.database.PictureDatabase
+import com.mdubovikov.data.database.FlickrDatabase
 import com.mdubovikov.data.database.dao.FlickrDao
 import com.mdubovikov.data.gallery_screen.GalleryDataRepositoryImpl
 import com.mdubovikov.data.network.api.FlickrRetrofit
@@ -22,18 +22,18 @@ interface GalleryDataRepositoryModule {
 
         @ApplicationScope
         @Provides
-        fun provideApiService() = FlickrRetrofit.apiService
+        fun provideFlickrApi() = FlickrRetrofit.apiService
 
         @ApplicationScope
         @Provides
-        fun provideDatabase(application: Application): PictureDatabase {
-            return PictureDatabase.getInstance(context = application)
+        fun provideFlickrDatabase(application: Application): FlickrDatabase {
+            return FlickrDatabase.getInstance(context = application)
         }
 
         @ApplicationScope
         @Provides
-        fun provideTracksDao(database: PictureDatabase): FlickrDao {
-            return database.getPictureDao()
+        fun provideFlickrDao(database: FlickrDatabase): FlickrDao {
+            return database.flickrDao()
         }
     }
 }
