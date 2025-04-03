@@ -42,11 +42,17 @@ android {
 
 dependencies {
 
+    implementation(projects.core.ui)
     implementation(projects.core.utils)
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
     implementation(libs.dagger.core)
     kapt(libs.dagger.compiler)
     implementation(libs.coil.compose)

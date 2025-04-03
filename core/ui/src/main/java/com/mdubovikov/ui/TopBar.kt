@@ -2,6 +2,7 @@ package com.mdubovikov.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,7 +16,8 @@ import androidx.compose.ui.res.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    screenName: String
+    screenName: String,
+    onBackClick: () -> Unit
 ) {
     CenterAlignedTopAppBar(
         title = { Text(text = screenName) },
@@ -25,7 +27,7 @@ fun TopBar(
         ),
         navigationIcon = {
             if (screenName != stringResource(R.string.search)) {
-                IconButton(onClick = { }) {
+                IconButton(onClick = { onBackClick() }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.back_icon),
