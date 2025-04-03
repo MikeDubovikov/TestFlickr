@@ -15,7 +15,8 @@ import androidx.compose.ui.res.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    screenName: String
+    screenName: String,
+    onBackClick: () -> Unit
 ) {
     CenterAlignedTopAppBar(
         title = { Text(text = screenName) },
@@ -25,7 +26,7 @@ fun TopBar(
         ),
         navigationIcon = {
             if (screenName != stringResource(R.string.search)) {
-                IconButton(onClick = { }) {
+                IconButton(onClick = { onBackClick() }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.back_icon),

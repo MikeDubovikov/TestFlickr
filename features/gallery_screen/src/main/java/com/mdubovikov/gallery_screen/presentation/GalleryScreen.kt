@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -26,11 +27,14 @@ import com.mdubovikov.ui.R
 import com.mdubovikov.ui.TopBar
 
 @Composable
-fun GalleryScreen(viewModel: GalleryViewModel) {
+fun GalleryScreen(
+    viewModel: GalleryViewModel,
+    onDetailClick: (pictureUrl: String) -> Unit
+) {
 
     val pictures = viewModel.pictures.collectAsLazyPagingItems()
 
-    val state = viewModel.uiState.collectAsState()
+    val state by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.checkStatePictures()
@@ -40,7 +44,10 @@ fun GalleryScreen(viewModel: GalleryViewModel) {
         containerColor = MaterialTheme.colorScheme.background,
         contentColor = MaterialTheme.colorScheme.onBackground,
         topBar = {
-            TopBar(screenName = stringResource(R.string.search))
+            TopBar(
+                screenName = stringResource(R.string.search),
+                onBackClick = {}
+            )
         }
     ) { padding ->
         Column(
@@ -55,7 +62,7 @@ fun GalleryScreen(viewModel: GalleryViewModel) {
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                when (state.value) {
+                when (state) {
                     GalleryUiState.Initial -> {
                         Log.d("GalleryScreen", "Initial state reached")
                     }
@@ -69,7 +76,10 @@ fun GalleryScreen(viewModel: GalleryViewModel) {
                     }
 
                     GalleryUiState.Success -> {
-                        CharactersList(pictures = pictures)
+                        CharactersList(
+                            pictures = pictures,
+                            onDetailClick = onDetailClick
+                        )
                     }
                 }
             }

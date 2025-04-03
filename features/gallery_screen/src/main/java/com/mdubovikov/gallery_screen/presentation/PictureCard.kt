@@ -1,5 +1,6 @@
 package com.mdubovikov.gallery_screen.presentation
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,11 +22,13 @@ import com.mdubovikov.ui.R
 
 @Composable
 fun PictureCard(
+    modifier: Modifier = Modifier,
     picture: Picture,
-    modifier: Modifier = Modifier
+    onDetailClick: (pictureUrl: String) -> Unit
 ) {
     Box(
         modifier = modifier
+            .clickable(onClick = { onDetailClick(picture.url) })
             .padding(8.dp)
             .aspectRatio(1f)
             .clip(RoundedCornerShape(16.dp)),

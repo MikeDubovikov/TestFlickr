@@ -9,7 +9,8 @@ import com.mdubovikov.gallery_screen.domain.entity.Picture
 
 @Composable
 internal fun CharactersList(
-    pictures: LazyPagingItems<Picture>
+    pictures: LazyPagingItems<Picture>,
+    onDetailClick: (pictureUrl: String) -> Unit
 ) {
     val scrollableListState = rememberLazyGridState()
 
@@ -19,7 +20,10 @@ internal fun CharactersList(
     ) {
         items(pictures.itemCount) { item ->
             pictures[item]?.let { picture ->
-                PictureCard(picture = picture)
+                PictureCard(
+                    picture = picture,
+                    onDetailClick = onDetailClick
+                )
             }
         }
     }
