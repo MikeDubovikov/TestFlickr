@@ -9,4 +9,5 @@
     <string name="search_icon">Иконка поиска</string>
     <string name="clear_search_icon">Иконка очистки поиска</string>
     <string name="make_search">Сделай свой первый поиск!</string>
+    <string name="enter_keyword">Введите ключевое слово</string>
 </resources>

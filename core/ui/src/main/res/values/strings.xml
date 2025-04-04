@@ -8,4 +8,5 @@
     <string name="search_icon">Search icon</string>
     <string name="clear_search_icon">Clear search icon</string>
     <string name="make_search">Make your first search!</string>
+    <string name="enter_keyword">Enter a keyword</string>
 </resources>
