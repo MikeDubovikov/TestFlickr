@@ -59,7 +59,9 @@ fun GalleryScreen(
             )
 
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 16.dp),
                 contentAlignment = Alignment.Center
             ) {
                 when (state) {

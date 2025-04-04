@@ -28,10 +28,10 @@ fun PictureCard(
 ) {
     Box(
         modifier = modifier
-            .clickable(onClick = { onDetailClick(picture.url) })
             .padding(8.dp)
             .aspectRatio(1f)
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = { onDetailClick(picture.url) }),
         contentAlignment = Alignment.BottomCenter
     ) {
         AsyncImage(

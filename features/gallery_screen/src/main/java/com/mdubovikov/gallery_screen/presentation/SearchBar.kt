@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -44,7 +45,12 @@ fun SearchPicturesBar(
                 },
                 expanded = false,
                 onExpandedChange = { },
-                placeholder = { Text(text = stringResource(R.string.search)) },
+                placeholder = {
+                    Text(
+                        text = stringResource(R.string.enter_keyword),
+                        modifier = Modifier.alpha(0.5f)
+                    )
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
