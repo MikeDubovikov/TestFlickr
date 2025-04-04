@@ -11,6 +11,7 @@ The application allows:
 ## Tech stack & Open-source libraries
 
 - [Kotlin](https://kotlinlang.org): programming language.
+- [Compose](https://developer.android.com/compose): modern UI toolkit for declarative UI development.
 - [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlinlang.org/docs/flow.html): for asynchronous operations.
 - [Kotlin Serialization](https://github.com/Kotlin/kotlinx.serialization): for data serialization.
 - [Navigation Component](https://developer.android.com/guide/navigation): for navigating between screens.
